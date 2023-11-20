@@ -1,20 +1,33 @@
-import type { Config } from 'tailwindcss'
+// tailwind.config.js
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/component/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    theme: {
+      extend: {
+        keyframes: {
+          colorChange: {
+            '0%': { color: '#313866' },
+            '10%': { color: '#504099' },
+            '30%': { color: '#9838D1' },
+            '50%': { color: '#F440D2' },
+            '70%': { color: '#9838D1' },
+            '90%': { color: '#504099' },
+            '100%': { color: '#313866' },
+          },
+        },
+        animation: {
+          colorChange: 'colorChange 3s linear infinite',
+        },
       },
     },
-  },
-  plugins: [],
-}
-export default config
+  plugins: [
+    require('tailwindcss-gradients'),
+  ],
+};
+
+export default config;
